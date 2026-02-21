@@ -268,5 +268,6 @@ Bu proje **TUG staj projesi** olarak hazırlanmıştır. İstediğiniz gibi ince
 
 ---
 
-**Hazırlayan:** <a href="gulkaraman.com">Gül Karaman</a>
+**Hazırlayan:** <a href="https://gulkaraman.com">Gül Karaman</a>
+
 
