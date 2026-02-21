@@ -268,6 +268,5 @@ Bu proje **TUG staj projesi** olarak hazırlanmıştır. İstediğiniz gibi ince
 
 ---
 
-**Proje yolu:** `C:\Users\monster\Desktop\typeProjeGithub`  
-**Hazırlayan:** TUG Staj Projesi  
-**README son güncelleme:** Şubat 2025
+**Hazırlayan:** <a href="gulkaraman.com">Gül Karaman</a>
+
