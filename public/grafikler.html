@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yaş ve Cinsiyet Dağılımı</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="toast-container" class="toast-container"></div>
+  <div class="container">
+    <header>
+      <h1 data-i18n="title_charts">Dağılım Grafikleri</h1>
+      <div class="header-right">
+        <div class="theme-toggle">
+          <span class="theme-icon">☾</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-switch">
+            <span class="slider"></span>
+          </label>
+          <span class="theme-icon">☀</span>
+        </div>
+        <select id="language-select" class="language-select" aria-label="Dil seçimi">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+        </select>
+        <button type="button" id="template-open-btn" class="btn btn-secondary btn-sm" data-i18n="template_menu_button">
+          Tema
+        </button>
+        <nav>
+          <a href="/" data-i18n="nav_users">Kullanıcılar</a>
+          <a href="/grafikler" class="active" data-i18n="nav_charts">Grafikler</a>
+        </nav>
+      </div>
+    </header>
+
+    <div id="template-overlay" class="template-overlay">
+      <div class="template-modal">
+        <h2 data-i18n="template_title">Görsel temayı seçin</h2>
+        <p data-i18n="template_subtitle">İstediğiniz stili seçin. Tüm özellikler her temada aynıdır.</p>
+        <div class="template-grid">
+          <button type="button" class="template-card" data-template="modern">
+            <div style="display:flex;justify-content:space-between;width:100%;align-items:center;">
+              <div>
+                <span class="template-tag">Template 1</span>
+                <h3 data-i18n="template_modern_name">Modern</h3>
+                <p data-i18n="template_modern_desc">Cam efektli kartlar, mor vurgu renkleri ve sade, modern bir görünüm.</p>
+              </div>
+              <span class="template-badge">Default</span>
+            </div>
+            <div class="template-preview">
+              ▣ Header — modern nav<br>
+              ▣ Gradient arka plan<br>
+              ▣ Köşeleri yuvarlatılmış kartlar
+            </div>
+          </button>
+          <button type="button" class="template-card" data-template="medieval">
+            <span class="template-tag">Template 2</span>
+            <h3 data-i18n="template_medieval_name">Medieval</h3>
+            <p data-i18n="template_medieval_desc">Parşömen dokuları, sıcak tonlar ve eski çağlardan ilham alan detaylar.</p>
+            <div class="template-preview">
+              ▣ Sıcak kahverengi tonlar<br>
+              ▣ Eski parşömen hissi<br>
+              ▣ Dekoratif başlık stilleri
+            </div>
+          </button>
+          <button type="button" class="template-card" data-template="observatory">
+            <span class="template-tag">Template 3</span>
+            <h3 data-i18n="template_observatory_name">Gözlemevi</h3>
+            <p data-i18n="template_observatory_desc">Yıldızlı gece gökyüzü, kozmik renkler ve gözlemevi atmosferi.</p>
+            <div class="template-preview">
+              ▣ Derin uzay arka planı<br>
+              ▣ Parlayan vurgu renkleri<br>
+              ▣ Veri odaklı, futuristik his
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="card chart-card">
+        <h3 data-i18n="charts_age_title">Yaşa Göre Dağılım</h3>
+        <div class="chart-container">
+          <canvas id="age-chart"></canvas>
+        </div>
+        <p class="chart-hint" data-i18n="charts_hint">Dilime tıklayarak filtreleyin</p>
+      </div>
+      <div class="card chart-card">
+        <h3 data-i18n="charts_gender_title">Cinsiyete Göre Dağılım</h3>
+        <div class="chart-container">
+          <canvas id="gender-chart"></canvas>
+        </div>
+        <p class="chart-hint" data-i18n="charts_hint">Dilime tıklayarak filtreleyin</p>
+      </div>
+    </div>
+
+    <section class="card" id="filtered-list">
+      <div class="card-title">
+        <span data-i18n="filtered_list_title">Filtrelenmiş Kullanıcı Listesi</span>
+        <span id="list-subtitle"></span>
+      </div>
+
+      <div id="filter-info" class="filter-info" style="display: none;">
+        <div class="filter-pill">
+          <span class="filter-dot"></span>
+          <span class="filter-label" data-i18n="filter_bar_label">Aktif filtre</span>
+          <span id="filter-text"></span>
+          <button class="btn btn-secondary btn-sm filter-clear-btn" id="clear-filter" type="button" data-i18n="filter_clear">
+            Filtreyi temizle
+          </button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="label_name">Ad Soyad</th>
+              <th data-i18n="label_email">E-posta</th>
+              <th data-i18n="label_age">Yaş</th>
+              <th data-i18n="label_gender">Cinsiyet</th>
+            </tr>
+          </thead>
+          <tbody id="filtered-tbody">
+            <tr><td colspan="4" class="empty-state" data-i18n="filter_empty">Grafikte bir dilime tıklayın veya tüm listeyi görmek için filtreyi temizleyin.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <script src="/js/toast.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/charts.js"></script>
+</body>
+</html>
