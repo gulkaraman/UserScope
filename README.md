@@ -109,7 +109,7 @@ typeProjeGithub/
 
 1. **Projeyi klonlayın veya indirin**
    ```bash
-   cd C:\Users\monster\Desktop\typeProjeGithub
+   cd C:/"proje_dosya_yolu"
    ```
 
 2. **Bağımlılıkları yükleyin**  
@@ -129,7 +129,7 @@ typeProjeGithub/
    DB_HOST=localhost
    DB_USER=root
    DB_PASSWORD=your_mysql_password
-   DB_NAME=user_management_db
+   DB_NAME=your_db_name
    PORT=3000
    ```
 
@@ -163,7 +163,7 @@ typeProjeGithub/
 
 - **Geliştirme:**  
   `node dist/index.js`  
-  Konsolda `Sunucu http://localhost:3000 adresinde çalışıyor.` mesajını görmelisiniz.
+  Konsolda `Sunucu http://localhost:3000 adresinde çalışıyor.` mesajını görmelisiniz. (Port numarası farklı olabilir!)
 
 - **Sayfalar:**
   - **Kullanıcılar:** http://localhost:3000/
@@ -231,8 +231,8 @@ GET /api/users?yas_min=20&yas_max=29&cinsiyet=Kadın
 
 ## 🗄 Veritabanı
 
-- **Veritabanı adı:** `user_management_db` (varsayılan)
-- **Karakter seti:** utf8mb4, collation: utf8mb4_unicode_ci
+- **Veritabanı adı:** `your_db_name` (varsayılan)
+- **Karakter seti:** utf8mb4, collation: utf8mb4_unicode_ci (Türkçe karakter hatası almamak adına bunları kullanabilirsiniz!)
 
 ### `users` tablosu
 
@@ -269,5 +269,6 @@ Bu proje **TUG staj projesi** olarak hazırlanmıştır. İstediğiniz gibi ince
 ---
 
 **Hazırlayan:** <a href="https://gulkaraman.com">Gül Karaman</a>
+
 
 
